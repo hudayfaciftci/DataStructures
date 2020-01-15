@@ -1,50 +1,37 @@
 package Sorts;
 
-import static Sorts.SortUtils.*;
-
-/**
- * @author Varun Upadhyay (https://github.com/varunu28)
- * @author Podshivalov Nikita (https://github.com/nikitap492)
- * @see SortAlgorithm
- */
-
-class BubbleSort implements SortAlgorithm {
-    /**
-     * This method implements the Generic Bubble Sort
-     *
-     * @param array The array to be sorted
-     *              Sorts the array in increasing order
-     **/
-
-    @Override
-    public <T extends Comparable<T>> T[] sort(T array[]) {
-        for (int i = 0, size = array.length; i < size - 1; ++i) {
-            boolean swapped = false;
-            for (int j = 0; j < size - 1 - i; ++j) {
-                swapped = less(array[j], array[j + 1]) && swap(array, j, j +1);
-            }
-            if (!swapped) {
-                break;
-            }
-        }
-        return array;
-    }
-
-    // Driver Program
-    public static void main(String[] args) {
-
-        // Integer Input
-        Integer[] integers = {4, 23, 6, 78, 1, 54, 231, 9, 12};
-        BubbleSort bubbleSort = new BubbleSort();
-        bubbleSort.sort(integers);
-
-        // Output => 231, 78, 54, 23, 12, 9, 6, 4, 1
-        print(integers);
-
-        // String Input
-        String[] strings = {"c", "a", "e", "b", "d"};
-        //Output => e, d, c, b, a
-        print(bubbleSort.sort(strings));
-
-    }
-}
+public class BubbleSort {  
+    static void bubbleSort(int[] arr) {  
+        int n = arr.length;  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(arr[j-1] > arr[j]){  
+                                 //swap elements  
+                                 temp = arr[j-1];  
+                                 arr[j-1] = arr[j];  
+                                 arr[j] = temp;  
+                         }  
+                          
+                 }  
+         }  
+  
+    }  
+    public static void main(String[] args) {  
+                int arr[] ={3,60,35,2,45,320,5};  
+                 
+                System.out.println("Dizi Oncesi Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+                System.out.println();  
+                  
+                bubbleSort(arr);  
+                 
+                System.out.println("Dizi Sonrasi Bubble Sort");  
+                for(int i=0; i < arr.length; i++){  
+                        System.out.print(arr[i] + " ");  
+                }  
+   
+        }  
+}  

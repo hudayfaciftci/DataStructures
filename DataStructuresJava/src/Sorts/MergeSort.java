@@ -1,100 +1,106 @@
 package Sorts;
 
-import static Sorts.SortUtils.print;
+public class MergeSort {
 
-/**
- * This method implements the Generic Merge Sort
- *
- * @author Varun Upadhyay (https://github.com/varunu28)
- * @author Podshivalov Nikita (https://github.com/nikitap492)
- * @see SortAlgorithm
- */
+    private int[] list;
 
-class MergeSort implements SortAlgorithm {
-
-    /**
-     * This method implements the Generic Merge Sort
-     *
-     * @param unsorted the array which should be sorted
-     * @param <T>      Comparable class
-     * @return sorted array
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T extends Comparable<T>> T[] sort(T[] unsorted) {
-        T[] tmp = (T[]) new Comparable[unsorted.length];
-        doSort(unsorted, tmp, 0, unsorted.length - 1);
-        return unsorted;
+   // siralancak listeyi alan inþa fonksiyonu
+    public MergeSort(int[] listToSort) {
+	list = listToSort;
     }
 
-    /**
-     * @param arr   The array to be sorted
-     * @param temp  The copy of the actual array
-     * @param left  The first index of the array
-     * @param right The last index of the array
-     *              Recursively sorts the array in increasing order
-     **/
-    private static <T extends Comparable<T>> void doSort(T[] arr, T[] temp, int left, int right) {
-        if (left < right) {
-            int mid = left + (right - left) / 2;
-            doSort(arr, temp, left, mid);
-            doSort(arr, temp, mid + 1, right);
-            merge(arr, temp, left, mid, right);
-        }
-
+   // listeyi döndüren kapsülleme fonksiyonu 
+    public int[] getList() {
+	return list;
     }
 
-    /**
-     * This method implements the merge step of the merge sort
-     *
-     * @param arr   The array to be sorted
-     * @param temp  The copy of the actual array
-     * @param left  The first index of the array
-     * @param mid   The middle index of the array
-     * @param right The last index of the array
-     *              merges two parts of an array in increasing order
-     **/
-
-    private static <T extends Comparable<T>> void merge(T[] arr, T[] temp, int left, int mid, int right) {
-        System.arraycopy(arr, left, temp, left, right - left + 1);
-
-
-        int i = left;
-        int j = mid + 1;
-        int k = left;
-
-        while (i <= mid && j <= right) {
-            if (temp[i].compareTo(temp[j]) <= 0) {
-                arr[k++] = temp[i++];
-            } else {
-                arr[k++] = temp[j++];
-            }
-        }
-
-        while (i <= mid) {
-            arr[k++] = temp[i++];
-        }
-
-        while (j <= right) {
-            arr[k++] = temp[j++];
-        }
+   // dýþarýdan çaðýrýlan sýralama fonksiyonu
+    public void sort() {
+	list = sort(list);
     }
 
-    // Driver program
+  // Özyineli olarak çalýþan ve her parça için kullanýlan sýralama fonksiyonu
+    private int[] sort(int[] whole) {
+	if (whole.length == 1) {
+	    return whole;
+	}
+	else {
+	   // diziyi ikiye bölüyoruz ve solu oluþturuyoruz
+	    int[] left = new int[whole.length/2];
+	    System.arraycopy(whole, 0, left, 0, left.length);
+
+	    //dizinin saðýný oluþturuyoruz ancak tek sayý ihtimali var
+	    int[] right = new int[whole.length-left.length];
+	    System.arraycopy(whole, left.length, right, 0, right.length);
+
+	    // her iki tarafý ayrý ayrý sýralýyoruz
+	    left = sort(left);
+	    right = sort(right);
+
+	    // Sýralanmýþ dizileri birleþtiriyoruz
+	    merge(left, right, whole);
+
+	    return whole;
+	}
+    }
+
+    // birleþtirme fonksiyonu
+    private void merge(int[] left, int[] right, int[] result) {
+	int x = 0;
+	int y = 0;
+	int k = 0;
+
+	// iki dizide de eleman varken
+	while (x < left.length &&
+	       y < right.length) {
+	    if (left[x] < right[y]) {
+		result[k] = left[x];
+		x++;
+	    }
+	    else {
+		result[k] = right[y];
+		y++;
+	    }
+	    k++;
+	}
+
+	int[] rest;
+	int restIndex;
+	if (x >= left.length) {
+
+	    rest = right;
+	    restIndex = y;
+	}
+	else {
+
+	    rest = left;
+	    restIndex = x;
+	}
+
+	for (int i=restIndex; i<rest.length; i++) {
+	    result[k] = rest[i];
+	    k++;
+	}
+    }
+
     public static void main(String[] args) {
 
-        // Integer Input
-        Integer[] arr = {4, 23, 6, 78, 1, 54, 231, 9, 12};
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(arr);
+	int[] arrayToSort = {15, 19, 4, 3, 18, 6, 2, 12, 7, 9, 11, 16};
 
-        // Output => 1	   4  	 6	9	12	23	54	78	231
-        print(arr);
+	System.out.println("Unsorted:");
+	for(int i = 0;i< arrayToSort.length ; i++){
+            System.out.println(arrayToSort[i] + " ");
+        }
 
-        // String Inpu
-        String[] stringArray = {"c", "a", "e", "b", "d"};
-        mergeSort.sort(stringArray);
-        //Output => a	b	c	d	e
-        print(stringArray);
+	MergeSort sortObj = new MergeSort(arrayToSort);
+	sortObj.sort();
+
+	System.out.println("Sorted:");
+        int [] sirali = sortObj.getList();
+
+        for(int i = 0;i< sirali.length ; i++){
+            System.out.println(sirali[i] + " ");
+        }
+
     }
 }
