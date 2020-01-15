@@ -19,7 +19,7 @@ public class BubbleSort {
     }  
     public static void main(String[] args) {  
 
-                int arr[] ={3,69,35,2,43,320,5};  
+                int arr[] ={3,78,35,41,45,320,5};  
 
                 int arr1[] ={3,78,35,41,45,320,5};  
 
