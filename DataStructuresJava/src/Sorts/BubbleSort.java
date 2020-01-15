@@ -18,7 +18,11 @@ public class BubbleSort {
   
     }  
     public static void main(String[] args) {  
+<<<<<<< HEAD
                 int arr[] ={3,69,35,2,43,320,5};  
+=======
+                int arr[] ={3,78,35,41,45,320,5};  
+>>>>>>> f27b4556acfe72ba2afaf070d45073260597e46b
                  
                 System.out.println("Dizi Oncesi Bubble Sort");  
                 for(int i=0; i < arr.length; i++){  
