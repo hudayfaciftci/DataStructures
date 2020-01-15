@@ -18,23 +18,23 @@ public class BubbleSort {
   
     }  
     public static void main(String[] args) {  
-<<<<<<< HEAD
+
                 int arr[] ={3,69,35,2,43,320,5};  
-=======
-                int arr[] ={3,78,35,41,45,320,5};  
->>>>>>> f27b4556acfe72ba2afaf070d45073260597e46b
+
+                int arr1[] ={3,78,35,41,45,320,5};  
+
                  
                 System.out.println("Dizi Oncesi Bubble Sort");  
-                for(int i=0; i < arr.length; i++){  
-                        System.out.print(arr[i] + " ");  
+                for(int i=0; i < arr1.length; i++){  
+                        System.out.print(arr1[i] + " ");  
                 }  
                 System.out.println();  
                   
-                bubbleSort(arr);  
+                bubbleSort(arr1);  
                  
                 System.out.println("Dizi Sonrasi Bubble Sort");  
-                for(int i=0; i < arr.length; i++){  
-                        System.out.print(arr[i] + " ");  
+                for(int i=0; i < arr1.length; i++){  
+                        System.out.print(arr1[i] + " ");  
                 }  
    
         }  
