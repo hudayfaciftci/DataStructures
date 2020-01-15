@@ -85,7 +85,7 @@ public class MergeSort {
 
     public static void main(String[] args) {
 
-	int[] arrayToSort = {15, 19, 4, 3, 18, 6, 2, 29, 7, 37, 11, 16};
+	int[] arrayToSort = {15, 19, 4, 3, 18, 6, 2, 29, 7, 38, 11, 16};
 
 	System.out.println("Unsorted:");
 	for(int i = 0;i< arrayToSort.length ; i++){
