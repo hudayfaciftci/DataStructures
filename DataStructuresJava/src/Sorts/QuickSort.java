@@ -60,7 +60,7 @@ class QuickSort
 	// Driver program 
 	public static void main(String args[]) 
 	{ 
-		int arr[] = {10, 7, 8, 6, 1, 5}; 
+		int arr[] = {10, 7, 8, 9, 11, 5}; 
 		int n = arr.length; 
 
 		QuickSort ob = new QuickSort(); 
@@ -69,4 +69,4 @@ class QuickSort
 		System.out.println("sorted array"); 
 		printArray(arr); 
 	} 
-} 
+}
